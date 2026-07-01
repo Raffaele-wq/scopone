@@ -410,7 +410,10 @@ def evaluate_move_logic(player, state, card_played, captured, unknown_cards):
                 ev -= risk_penalty
                 
                 if risk_penalty > 1.0:
-                    reasons.append(f"[CONTRO] [RISCHIO PRESA MULTIPLA] Il tavolo {table_sum} è vulnerabile a {num_threats} possibili prese avversarie (Malus: -{risk_penalty:.1f}).")
+                    if num_threats > 1:
+                        reasons.append(f"[CONTRO] [RISCHIO PRESA MULTIPLA] Il tavolo è vulnerabile a {num_threats} possibili prese avversarie (Malus: -{risk_penalty:.1f}).")
+                    else:
+                        reasons.append(f"[CONTRO] [RISCHIO SCOPA DIRETTO] Hai esposto il tavolo a una scopa diretta molto probabile (Malus: -{risk_penalty:.1f}).")
             else:
                 ev += 5.0
                 reasons.append(f"[PRO] [TAVOLO BLINDATO] Il tavolo {table_sum} è matematicamente o probabilisticamente inattaccabile dagli avversari.")

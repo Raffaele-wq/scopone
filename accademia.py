@@ -51,7 +51,7 @@ def extract_primary_reason(user_reason, ai_reason):
                 # E' un errore diretto dell'utente
                 for tag, explanation in DIDACTIC_ENCYCLOPEDIA.items():
                     if tag in line:
-                        lesson = f"[CONTRO] Errore Tattico ({tag})\n{explanation}\n\n[INFO_TECNICA] {line.replace('[CONTRO]', '').strip()}"
+                        lesson = f"[CONTRO] Errore Tattico ({tag})\n[LEZIONE]\n{explanation}"
                         return lesson
                 return line.strip() # Fallback
 
@@ -60,7 +60,7 @@ def extract_primary_reason(user_reason, ai_reason):
             if "[PRO]" in line:
                 for tag, explanation in DIDACTIC_ENCYCLOPEDIA.items():
                     if tag in line:
-                        lesson = f"[CONTRO] Occasione Persa ({tag})\nHai ignorato l'alternativa matematicamente superiore.\n\n[LEZIONE]\n{explanation}\n\n[INFO_TECNICA] L'IA avrebbe scelto questa via: {line.replace('[PRO]', '').strip()}"
+                        lesson = f"[CONTRO] Occasione Persa ({tag})\nHai ignorato l'alternativa matematicamente superiore.\n\n[LEZIONE]\n{explanation}"
                         return lesson
                 return f"[CONTRO] Occasione Persa\nHai ignorato un'alternativa migliore: {line.replace('[PRO]', '').strip()}"
                 

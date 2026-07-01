@@ -148,7 +148,7 @@ def get_probability_matrix(state, observer_player, unknown_cards):
         absence = getattr(state, 'absence_memory', {}).get(p_id, set())
         for c in unknown_cards:
             if c.value in absence: 
-                P_matrix[p_id][c] = 0.15 # Soft Bayesian Deduction invece di 0.0 assoluto
+                P_matrix[p_id][c] = 0.0 # Absolute mathematical certainty
             else: 
                 P_matrix[p_id][c] = 1.0
 
